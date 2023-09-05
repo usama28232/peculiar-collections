@@ -44,6 +44,20 @@ func TestInsertValue(t *testing.T) {
 	// Create new instance of Peculiar Map
 }
 
+func TestInsertIfAbsebt(t *testing.T) {
+	sample1 := SampleStruct{
+		FirstName: "John",
+		LastName:  "Wick",
+		Age:       0,
+	}
+	collection.SetIfAbsent(1, sample1)
+
+	v, _ := collection.Get(1)
+	if v.Age == 0 {
+		t.Fail()
+	}
+}
+
 func TestGetValue(t *testing.T) {
 	v, e := collection.Get(2)
 	if e != nil {
@@ -114,4 +128,12 @@ func TestCollective(t *testing.T) {
 	collection1.Set(2, sample2)
 	collection1.Set(3, sample3)
 	collection1.Remove(2)
+}
+
+func TestClear(t *testing.T) {
+	collection.Clear()
+
+	if !collection.IsEmpty() || collection.Size() > 0 {
+		t.Fail()
+	}
 }

@@ -2,16 +2,16 @@ package peculiar
 
 import "fmt"
 
-// Custom key value collection implementation to maintain insertion order.
-type Map[K int | string, T any] struct {
-	keys []K     // local variable to hold underlying keys
-	data map[K]T // local variable to hold key value pair
+// peculiar-map - collection implementation for maintaining insertion order.
+type Map[K comparable, T any] struct {
+	keys []K
+	data map[K]T
 }
 
 // Creates new key value collection of provided type.
 //
 // Returns new instance of peculiar-map
-func NewMap[K int | string, T any]() *Map[K, T] {
+func NewMap[K comparable, T any]() *Map[K, T] {
 	return &Map[K, T]{
 		keys: []K{},
 		data: make(map[K]T),
@@ -48,7 +48,7 @@ func (c *Map[K, T]) ContainsKey(key K) bool {
 	return exists
 }
 
-// Set/Replace value in collection.
+// Sets/Replaces value in collection.
 //
 // Return void
 func (c *Map[K, T]) Set(key K, value T) {
@@ -58,7 +58,16 @@ func (c *Map[K, T]) Set(key K, value T) {
 	c.data[key] = value
 }
 
-// Remove key & value from collection.
+// Sets value in collection (only if absent).
+//
+// Return void
+func (c *Map[K, T]) SetIfAbsent(key K, value T) {
+	if !c.ContainsKey(key) {
+		c.Set(key, value)
+	}
+}
+
+// Removes key & value from collection.
 //
 // Return void
 func (c *Map[K, T]) Remove(key K) {
@@ -74,7 +83,7 @@ func (c *Map[K, T]) Remove(key K) {
 	}
 }
 
-// Iterate current collection by insertion order.
+// Iterates current collection by insertion order.
 //
 // Return void
 func (c *Map[K, T]) Foreach(f func(v T)) {
@@ -84,7 +93,7 @@ func (c *Map[K, T]) Foreach(f func(v T)) {
 	}
 }
 
-// Iterate current collection by insertion order and modify values foreach entry
+// Iterates current collection by insertion order and modify values foreach entry
 //
 // Return void
 func (c *Map[K, T]) Map(f func(v T) T) {
@@ -95,7 +104,7 @@ func (c *Map[K, T]) Map(f func(v T) T) {
 	}
 }
 
-// Get all keys in collection.
+// Gets all keys in collection.
 //
 // Returns keys by insertion order.
 func (c *Map[K, T]) Keys() []K {
@@ -109,9 +118,19 @@ func (c *Map[K, T]) Size() int {
 	return len(c.keys)
 }
 
-// Check if collection is empty
+// Checks if collection is empty
 //
 // Returns true if collection is empty
 func (c *Map[K, T]) IsEmpty() bool {
 	return len(c.keys) == 0
+}
+
+// Clears all values in collection
+//
+// Return void
+func (c *Map[K, T]) Clear() {
+	if !c.IsEmpty() {
+		c.keys = []K{}
+		c.data = make(map[K]T)
+	}
 }
