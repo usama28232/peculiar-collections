@@ -1,9 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-const Version = "v1.0.0"
+	"github.com/usama28232/peculiar-collections/peculiar"
+)
 
 func main() {
-	fmt.Println("Peculiar Map", Version)
+	fmt.Println("Peculiar-Map", peculiar.Version)
 }
