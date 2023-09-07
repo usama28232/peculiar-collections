@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Peculiar-Map", peculiar.Version)
+	fmt.Println("Peculiar-Collections", peculiar.Version)
 }
