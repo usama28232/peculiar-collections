@@ -1,4 +1,3 @@
-// This package contains implmentations of Ordered Map & Slice/List with some general redundant operations
 package peculiar
 
 import (

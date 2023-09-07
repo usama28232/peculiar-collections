@@ -1,7 +1,7 @@
 # peculiar-collections 
 
 
-[![GoDoc](https://godoc.org/pault.ag/go/piv?status.svg)](https://pkg.go.dev/github.com/usama28232/peculiar-collections/peculiar) 
+[![GoDoc](https://godoc.org/pault.ag/go/piv?status.svg)](https://pkg.go.dev/github.com/usama28232/peculiar-collections) 
 
 This repository is designed to centralize collection implementations with most commonly used functionalities to remove redundancy of code and provide fine grained control over general operations
 

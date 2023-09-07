@@ -1,3 +1,4 @@
+// This respository contains implmentations of Ordered Map & Slice/List with some general redundant operations
 package main
 
 import (
