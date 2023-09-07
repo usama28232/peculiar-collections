@@ -18,7 +18,7 @@ This repository is designed to centralize collection implementations with most c
 Import the package using the go get command
 
 ```
-go get github.com/usama28232/peculiar-map
+go get github.com/usama28232/peculiar-collections
 ```
 
 ### For more information & usage, please check out the wiki section
