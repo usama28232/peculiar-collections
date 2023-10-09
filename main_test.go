@@ -16,10 +16,13 @@ type SampleStruct struct {
 
 var collection *peculiar.Map[int, SampleStruct]
 var list *peculiar.List[string]
+var linkedList *peculiar.LinkedList[int]
 
 func TestMain(m *testing.M) {
 	collection = peculiar.NewMap[int, SampleStruct]()
 	list = peculiar.NewList[string]()
+	linkedList = peculiar.NewLinkedList[int]()
+
 	code := m.Run()
 	os.Exit(code)
 }
@@ -173,5 +176,49 @@ func TestMapClear(t *testing.T) {
 
 	if !collection.IsEmpty() || collection.Size() > 0 {
 		t.Fail()
+	}
+}
+
+func TestLinkedListAddValue(t *testing.T) {
+	linkedList.AddByValue(1)
+	linkedList.AddByValue(2)
+	linkedList.AddByValue(3)
+	linkedList.AddByValue(4)
+	linkedList.AddByValue(5)
+	fmt.Println(linkedList.GetItemsSlice())
+	if linkedList.Length() == 0 {
+		t.Error("cannot add values to peculiar-linked-list")
+	}
+}
+
+func TestLinkedListAddBeforeValue(t *testing.T) {
+	itm2 := peculiar.NewLinkedListItemWithValue[int](2)
+	itm4 := peculiar.NewLinkedListItemWithValue[int](4)
+	err1 := linkedList.AddBeforeValue(3, itm2)
+	err2 := linkedList.AddBeforeValue(4, itm4)
+	fmt.Println(linkedList.GetItemsSlice())
+	if err1 != nil || err2 != nil {
+		t.Error(err1, err2)
+	}
+}
+
+func TestLinkedListAddAfterValue(t *testing.T) {
+	itm2 := peculiar.NewLinkedListItemWithValue[int](2)
+	itm4 := peculiar.NewLinkedListItemWithValue[int](4)
+	err1 := linkedList.AddAfterValue(3, itm2)
+	err2 := linkedList.AddAfterValue(4, itm4)
+	fmt.Println(linkedList.GetItemsSlice())
+	if err1 != nil || err2 != nil {
+		t.Error(err1, err2)
+	}
+}
+
+func TestLinkedListRemoveValueAndFind(t *testing.T) {
+	linkedList.RemoveByValue(3)
+	fmt.Println(linkedList.GetItemsSlice())
+	item, err := linkedList.Find(3)
+	if err == nil {
+		t.Error("could not delete value from peculiar-linked-list")
+		fmt.Println(linkedList.GetItemsSlice(), item)
 	}
 }

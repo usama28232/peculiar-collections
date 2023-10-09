@@ -5,10 +5,11 @@
 
 This repository is designed to centralize collection implementations with most commonly used functionalities to remove redundancy of code and provide fine grained control over general operations
 
-**Peculiar-Collections v1.0.2** provides following implementations
+**Peculiar-Collections v1.0.4** provides following implementations
 
 * `Peculiar-Map` - is an implementation of Map which preserves insertion order while using struct and exposes general functions for re-usability
 * `Peculiar-List` - is an implementation of slice/list which exposes general functions for re-usability
+* `Peculiar-LinkedList` - is an implementation of LinkedList with some general functions
 
 #### NOTE: This repository requires GO Version >= 1.18
 
@@ -25,6 +26,7 @@ go get github.com/usama28232/peculiar-collections
 
 * [peculiar-map wiki](https://github.com/usama28232/peculiar-collections/wiki/peculiar%E2%80%90map)
 * [peculiar-list wiki](https://github.com/usama28232/peculiar-collections/wiki/peculiar%E2%80%90list)
+* [peculiar-linked-list wiki](https://github.com/usama28232/peculiar-collections/wiki/peculiar%E2%80%90linked%E2%80%90list)
 
 
 ## Problem
